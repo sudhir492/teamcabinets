@@ -1,23 +1,51 @@
 {{extend 'layout.html'}}
 
 {{block header}}
+<div class="jumbotron jumbotron-fluid background" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
+  <div class="container center">
+    <h1 class="display-5">/{{=request.application}}/{{=request.controller}}/{{=request.function}}</h1>
+  </div>
+</div>
 {{end}}
 
-<div class="center">
-<h2>Ready to Assemble Kitchen Cabinets</h2>
+<div class="row">
+  <div class="col-md-12">
+    {{if 'message' in globals():}}
+    <h2>{{=message}}</h2>
+    <p class="lead">{{=T('How did you get here?')}}</p>
+    <ol style="word-wrap:break-word;">
+      <li>{{=T('You are successfully running web2py')}}</li>
+      <li>{{=XML(T('You visited the url %s', A(request.env.path_info,_href=request.env.path_info)))}}</li>
+      <li>{{=XML(T('Which called the function %s located in the file %s',
+        (A(request.function+'()',_href='#'),
+        A('web2py/applications/%(application)s/controllers/%(controller)s.py' % request,
+        _href=URL('admin','default','peek', args=(request.application,'controllers',request.controller+'.py'))))))}}</li>
+      <li>{{=XML(T('The output of the file is a dictionary that was rendered by the view %s',
+        A('web2py/applications/%(application)s/views/%(controller)s/index.html' % request,
+        _href=URL('admin','default','peek',args=(request.application,'views',request.controller,'index.html')))))}}</li>
+      <li>{{=T('You can modify this application and adapt it to your needs')}}</li>
+    </ol>
+    <div class="jumbotron jumbotron-fluid" style="padding:30px;word-wrap:break-word;">
+      <div class="container center">
+        <a class="btn btn-primary" href="{{=URL('admin','default','index')}}">
+          <i class="fa fa-cog"></i>
+          {{=T("admin")}}
+        </a>
+        <a class="btn btn-secondary" href="{{=URL('examples','default','index')}}">{{=T("Online examples")}}</a>
+        <a class="btn btn-secondary" href="http://web2py.com">web2py.com</a>
+        <a class="btn btn-secondary" href="http://web2py.com/book">{{=T('Documentation')}}</a>
+        <a class="btn btn-secondary" href="{{=URL('default','api_get_user_email')}}">{{=T('API Example')}}</a>
+        <a class="btn btn-secondary" href="{{=URL('default','grid/auth_user')}}">{{=T('Grid Example')}}</a>
+        <a class="btn btn-secondary" href="{{=URL('default','wiki')}}">{{=T('Wiki Example')}}</a>
+      </div>
+    </div>
+    {{elif 'content' in globals():}}
+    {{=content}}
+    {{else:}}
+    {{=BEAUTIFY(response._vars)}}
+    {{pass}}
+  </div>
 </div>
 
-<div class="splash-img"> <img src="/tc/static/img-tc/CL-Charleston-Linen.jpg" width="150" height="300" alt="CL-Charleston-Linen.jpg"/>CL-Charleston-Linen</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/CS-Charleston-Saddle.jpg" width="150" height="300" alt="CS-Charleston-Saddle.jpg"/>CS-Charleston-Saddle</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/CW-Charleston-White-1.jpg" width="150" height="300" alt="CW-Charleston-White-1.jpg"/>CW-Charleston-White</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SA-Shaker-Antique-White.jpg" width="150" height="300" alt="SA-Shaker-Antique-White.jpg"/>SA-Shaker-Antique-White</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SD-Shaker-Dove.jpg" width="150" height="300" alt="SD-Shaker-Dove.jpg"/>SD-Shaker-Dove</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SE-Shaker-Espresso.jpg" width="150" height="300" alt="SE-Shaker-Espresso.jpg"/>SE-Shaker-Espresso</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SG-Shaker-Grey.jpg" width="150" height="300" alt="SG-Shaker-Grey.jpg"/>SG-Shaker-Grey</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SM-Sonoma-Mocha.jpg" width="150" height="300" alt="SM-Sonoma-Mocha.jpg"/>SM-Sonoma-Mocha</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SMW-Sonoma-White-1.jpg" width="150" height="300" alt="SMW-Sonoma-White-1.jpg"/>SMW-Sonoma-White</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SS-Sonoma-Spice.jpg" width="150" height="300" alt="SS-Sonoma-Spice-150x300.jpg"/>SS-Sonoma-Spice</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/SW-Shaker-White.jpg" width="150" height="300" alt="SW-Shaker-White.jpg"/>SW-Shaker-White</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/TW-Tahoe-White.jpg" width="150" height="300" alt="TW-Tahoe-White.jpg"/>TW-Tahoe-White</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/YC-York-Chocolate.jpg" width="150" height="300" alt="YC-York-Chocolate.jpg"/>YC-York-Chocolate</div>
-<div class="splash-img"> <img src="/tc/static/img-tc/YW-York-White-e1527963950296.png" width="150" height="300" alt="YW-York-White-e1527963950296.png"/>YW-York-White</div>
+
+
