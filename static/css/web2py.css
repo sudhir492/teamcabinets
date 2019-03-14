@@ -311,3 +311,14 @@ li.w2p_grid_breadcrumb_elem {
 .web2py_console .form-control {width: 20%; display: inline;}
 .web2py_console #w2p_keywords {width: 50%;}
 .web2py_search_actions a, .web2py_console input[type=submit], .web2py_console input[type=button], .web2py_console button { padding: 6px 12px; }
+
+/* Added TeamCabinets */
+.splash-img {
+    float: left;
+    width: 170px;
+    height: 350px;
+    border: 1px grey;
+    margin: 5px 5px 5px 5px;
+    font-family: helvetica;
+}
+
